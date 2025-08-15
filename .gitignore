@@ -1,1 +1,18 @@
+# venv & caches
 venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# macOS
+.DS_Store
+__MACOSX/
+
+# build metadata
+*.egg-info/
+src/*.egg-info/
+
+# env & data
+.env
+data/output*.json
+
