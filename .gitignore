@@ -2,7 +2,11 @@
 venv/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 .pytest_cache/
+.coverage
+htmlcov/
 
 # macOS
 .DS_Store
@@ -11,8 +15,24 @@ __MACOSX/
 # build metadata
 *.egg-info/
 src/*.egg-info/
+build/
+dist/
 
-# env & data
+# environment variables
 .env
-data/output*.json
+*.env
 
+# data & debug files
+data/output*.json
+data/*.html
+data/*.tmp
+data/*.log
+
+# Jupyter / notebooks
+.ipynb_checkpoints/
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.swp
+*.swo

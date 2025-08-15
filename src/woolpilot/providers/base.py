@@ -3,9 +3,7 @@ from typing import Optional
 from ..models import Product
 
 class Provider(ABC):
-    # abstract interface for any wool website data sources
-
-    # return a Product if found, otherwise return none
+    # search for wool products on wool website
     @abstractmethod
-    def search(self, brand: str, name: str) -> Optional[Product]:
-        raise NotImplementedError
+    def search_products(self, brand: str, name: str) -> Optional[Product]:
+        pass

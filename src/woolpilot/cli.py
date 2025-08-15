@@ -3,7 +3,7 @@ from .models import Product
 from .providers.wollplatz import WollplatzProvider
 from .storage import write_json
 
-# yarns to search for
+# hardcoded yarns to search for
 YARNS: List[tuple[str, str]] = [
     ("DMC", "Natura XL"),
     ("Drops", "Safran"),
@@ -13,12 +13,14 @@ YARNS: List[tuple[str, str]] = [
 ]
 
 def main() -> int:
+    # todo: allow switching between multiple providers
     provider = WollplatzProvider()
+    
+    # search for yarns from given provider
     results: List[Product] = []
-
     for brand, name in YARNS:
         try:
-            product = provider.search(brand, name)
+            product = provider.search_products(brand, name)
             results.append(product if product else Product(brand=brand, name=name))
         except Exception as e:
             # soft failure
@@ -26,5 +28,5 @@ def main() -> int:
             results.append(Product(brand=brand, name=name))
 
     write_json(results, "data/output.json")
-    print("Wrote data/output.json")
+    print("SUCCESS: result written to data/output.json")
     return 0
