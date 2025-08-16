@@ -63,6 +63,16 @@ data/             # output JSON files
 ```
 
 ## Notes
-- Code is structured with SOLID principles in mind (separation of provider and parser, clear model objects, isolated storage)
-- Currently only Wollplatz is implemented; other providers could be added under providers/ with their own parsers.
+
+### Fetching HTML
+
+In a production setup, fetching would require a real browser fetcher (e.g. Playwright or requests+Cloudscraper) to handle Cloudflare and dynamic JS rendering (I was unable to get this working in a reasonable time frame)  
+
+For this coding challenge, the `WollplatzProvider.fetch_search_html` method is stubbed to load a saved HTML file from `data/sample_wollplatz.html`. This lets me focus on clean architecture, parsing logic, and SOLID design without relying on fragile scraping.
+
+### Structure
+Code is structured with SOLID principles in mind (separation of provider and parser, clear model objects, isolated storage)
+
+### Provider Extension 
+Currently only Wollplatz is implemented; other providers could be added under providers/ with their own parsers.
 

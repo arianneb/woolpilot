@@ -1,3 +1,14 @@
-def clean_price(price_str: str):
-    # todo: convert price string to float (e.g. '€3,50' -> 3.5)
-    return 0
+# convert price string to float
+def parse_price(price_str: str) -> float | None:
+    if not price_str:
+        return None
+    cleaned = (
+        price_str.replace("€", "")
+        .replace(".", "")       # remove thousands separator
+        .replace(",", ".")      # replace comma with decimal
+        .strip()
+    )
+    try:
+        return float(cleaned)
+    except ValueError:
+        return None

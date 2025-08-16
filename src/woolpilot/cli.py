@@ -13,19 +13,16 @@ YARNS: List[tuple[str, str]] = [
 ]
 
 def main() -> int:
+    
     # todo: allow switching between multiple providers
     provider = WollplatzProvider()
     
     # search for yarns from given provider
-    results: List[Product] = []
+    results = []
     for brand, name in YARNS:
-        try:
-            product = provider.search_products(brand, name)
-            results.append(product if product else Product(brand=brand, name=name))
-        except Exception as e:
-            # soft failure
-            print(f"[WARNING] {brand} {name}: {e}")
-            results.append(Product(brand=brand, name=name))
+        product = provider.search_product(brand, name)
+        if product:
+            results.append(product)
 
     write_json(results, "data/output.json")
     print("SUCCESS: result written to data/output.json")
