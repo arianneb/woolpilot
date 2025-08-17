@@ -1,9 +1,15 @@
 from abc import ABC, abstractmethod
-from typing import Optional
-from ..models import Product
+from woolpilot.models import Product
 
-class Provider(ABC):
-    # search for wool products on wool website
+# abstract base class for wool providers (currently only implementing Wollplatz)
+class BaseProvider(ABC):
+
     @abstractmethod
-    def search_products(self, brand: str, name: str) -> Optional[Product]:
+    def fetch_search_html(self, brand: str, name: str) -> str:
+        # fetch the raw HTML for a product search page
+        pass
+
+    @abstractmethod
+    def search_product(self, brand: str, name: str) -> Product | None:
+        # search for a product and return a Product object, or None if not found
         pass

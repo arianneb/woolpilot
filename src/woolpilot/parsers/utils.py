@@ -1,5 +1,5 @@
 # convert price string to float
-def parse_price(price_str: str) -> float | None:
+def convert_price_to_float(price_str: str) -> float | None:
     if not price_str:
         return None
     cleaned = (

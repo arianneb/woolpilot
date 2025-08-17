@@ -3,25 +3,25 @@ from urllib.parse import quote
 from woolpilot.models import Product
 from woolpilot.providers.browser import fetch_html
 from woolpilot.parsers.wollplatz import WollplatzParser
+from woolpilot.providers.base import BaseProvider
 
 
-class WollplatzProvider:
+class WollplatzProvider(BaseProvider):
 
     BASE_URL = "https://www.wollplatz.de/wolle/"
 
     # fetch the raw HTML for a product search on Wollplatz, use Playwright to load page and return HTML
     def fetch_search_html(self, brand, name):
 
-        # build search query using brand and name
+        # build search query using brand and name (e.g. "Drops Baby Merino Mix" = "Drops%20Baby%20Merino%20Mix")
         query = f"{brand} {name}"
-        encoded_query = quote(query)   # "Drops Baby Merino Mix" → "Drops%20Baby%20Merino%20Mix"
+        encoded_query = quote(query)
         url = self.BASE_URL + "#sqr:(q[" + encoded_query + "])"
 
-        print("FRUITBAT: le url: " + url)
         return fetch_html(url)
 
 
-    # search Wollplatz for products by brand and name, return a list of Product objects
+    # search Wollplatz for products by brand and name, return a Product object
     def search_product(self, brand, name):
 
         parser = WollplatzParser()
@@ -52,4 +52,3 @@ class WollplatzProvider:
         product = Product(**productDict) 
         print(str(product))
         return product
-        

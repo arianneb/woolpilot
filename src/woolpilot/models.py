@@ -5,7 +5,7 @@ from typing import Optional
 class Product:
     brand: str
     name: str
-    price: Optional[str] = None
+    price: Optional[float] = None
     availability: Optional[str] = None
     needle_size: Optional[str] = None
     composition: Optional[str] = None

@@ -14,7 +14,7 @@ YARNS: List[tuple[str, str]] = [
 
 def main() -> int:
     
-    # todo: allow switching between multiple providers
+    # TODO: allow switching between multiple providers here
     provider = WollplatzProvider()
     
     # search for yarns from given provider

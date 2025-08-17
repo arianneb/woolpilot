@@ -2,7 +2,7 @@ import json
 from typing import Iterable
 from .models import Product
 
-# write products list to json and place in data/ folder
+# write products list to json and place in data/output.json
 def write_json(products: Iterable[Product], path: str) -> None:
     data = []
     for product in products:
